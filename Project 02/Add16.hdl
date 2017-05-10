@@ -9,7 +9,7 @@
  */
 
 CHIP Add16 {
-    IN a[16], b[16], control;
+    IN a[16], b[16];
     OUT out[16];
 
     PARTS:
