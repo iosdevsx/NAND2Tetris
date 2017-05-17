@@ -1,61 +1,56 @@
 // Multiplies R0 and R1 and stores the result in R2.
 // (R0, R1, R2 refer to RAM[0], RAM[1], and RAM[2], respectively.)
 
-	//Store R1 and R2 values
-	@R0
-	D=M
-	@first
-	M=D
+    //Set sum to 0
+    @sum
+    M=0
 
-	@R1
-	D=M
-	@second
-	M=D
+    //Check R1 and R2 for 0
+    @R0
+    D=M
+    @STOP
+    D;JEQ
 
-	//Declare i, which is number of iteractions.
-	@i
-	M=1
+    @first
+    M=D
 
-	//Declare sum, which is multiple result
-	@sum
-	M=0
+    @R1
+    D=M
+    @STOP
+    D;JEQ
 
-	//check if first number is zero
-	@first
-	D=M
-	@STOP
-	D;JEQ
+    @second
+    M=D
 
-	//check if second number is zero
-	@second
-	D=M
-	@STOP
-	D;JEQ
-	
-	//if i > n goto end
+    //Declare i, which is number of iteractions.
+    @i
+    M=0
+    
+    //if i > n goto end
 (LOOP)
-	@i
-	D=M
-	@second
-	D=D-M
-	@STOP
-	D;JGT
+    @i
+    D=M
+    @second
+    D=D-M
+    @STOP
+    D;JEQ
 
-	@first
-	D=M
-	@sum
-	M=M+D
-	@i
-	M=M+1
-	@LOOP
-	0;JMP
+    @first
+    D=M
+    @sum
+    M=M+D
+    @i
+    M=M+1
+    @LOOP
+    0;JMP
 
 (STOP)
-	@sum
-	D=M
-	@R2
-	M=D
+    @sum
+    D=M
+    @R2
+    M=D
 
-	@end
-	0;JMP
+(END)
+    @end
+    0;JMP
 
